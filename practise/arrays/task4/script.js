@@ -8,16 +8,17 @@ const users = [
   { name: "Jane", age: 20, isAdmin: false },
 ];
 
-const myFilter = function (arr, customSortFunction) {
-  const sortedArray = [];
-  for (let i = 0; i < arr.length; i++) {
-    if (arr[i] === "Alex") {
-      sortedArray.push(arr[i]);
+const myFilter = function(array, customSortFunction) {
+  const sortedArray = []
+  for (let i = 0; i < array.length; i++) {
+    if (customSortFunction(array[i], i, array) === true) {
+      sortedArray.push(array[i])
     }
   }
-
-  return sortedArray;
-};
-
-console.log(myFilter(myArray));
-
+  return sortedArray
+}
+console.log(
+  myFilter(users, (element, index, arr) => {
+    return element.name === "Bob"
+  })
+);

@@ -6,7 +6,7 @@ const myForEach = function(arr, customFunction) {
   for (let i = 0; i < arr.length; i++) {
     let e = arr[i]
     if (typeof customFunction !== "undefined") {
-      customFunction(i, arr[i])
+      customFunction(i, arr[i], arr)
     } else {
       console.log(e);
       
@@ -14,6 +14,6 @@ const myForEach = function(arr, customFunction) {
   }
 }
 
-myForEach(myArray, (index, element) => {
-  console.log(`В ячейке под индексом ${index} лежит ${element}`); 
+myForEach(myArray, (index, element, array) => {
+  console.log(`В ячейке под индексом ${index} лежит ${element}`);   
 })
