@@ -8,9 +8,15 @@ const todos = [
 ]
 
 const createTodo = function (todoList, todoName = "New todo") {
+  let maxId = 0
+  todoList.forEach(element => {
+    if (element.id > maxId) {
+      maxId = element.id
+    }
+  });
   const newTodo = {
-    id: todoList.length + 1,
-    titile: todoName,
+    id: maxId + 1,
+    title: todoName,
     isCompleted: false,
   }
   todoList.push(newTodo)
@@ -35,7 +41,7 @@ const deleteTodo = function (todoList, todoId) {
 }
 
 createTodo(todos, "Сделать тудулист")
-completeTodo(todos, 13)
+completeTodo(todos, 1)
 deleteTodo(todos, 2)
 
 
