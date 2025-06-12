@@ -8,25 +8,35 @@ const todos = [
 ]
 
 const createTodo = function (todoList, todoName = "New todo") {
-  const newTodo = {}
-  newTodo.id = new Date().getMilliseconds()
-  newTodo.title = todoName
-  newTodo.isCompleted = false
+  const newTodo = {
+    id: todoList.length + 1,
+    titile: todoName,
+    isCompleted: false,
+  }
   todoList.push(newTodo)
 }
 
 const completeTodo = function (todoList, todoId) {
   const index = todoList.findIndex((todo) => todo.id == todoId)
-  todoList[index].isCompleted = !todoList[index].isCompleted
+  if (index == -1) {
+    console.error("Ошибка! Задачи с таким айди не существует!")
+  } else {
+    todoList[index].isCompleted = !todoList[index].isCompleted
+  }
 }
 
 const deleteTodo = function (todoList, todoId) {
   const index = todoList.findIndex((todo) => todo.id == todoId)
-  todoList.splice(index, 1)
+  if (index == -1) {
+    console.error("Ошибка! Задачи с таким айди не существует!")
+  } else {
+    todoList.splice(index, 1)
+  }
 }
 
 createTodo(todos, "Сделать тудулист")
-completeTodo(todos, 1);
-deleteTodo(todos, 2);
+completeTodo(todos, 13)
+deleteTodo(todos, 2)
+
 
 console.log(todos)
