@@ -4,33 +4,40 @@
 
 const users = ["Alex", "Peter", "John", "Donald", "Pavel"];
 
-const first = function (arr, n) {
-  const newArray = [];
-  // Знаю, что лучше не делать больше, чем требуется т.к. за это мне не доплатят, 
-  // но сделал для тренировки чтобы не было тонны undefined в случае, если с придет слишком большое n
+const first = function (arr, n = 1) {
+  const newArray = new Array(n);
   if (n > arr.length) {
-    n = arr.length
+    n = arr.length;
   }
-  
-  switch (n) {
-    case undefined: {
-      newArray.push(arr[0]);
-      return newArray;
-      break;
-    }
-    // Проверка оказалась лишней
-    // case 0: {
-    //   return newArray;
-    //   break;
-    // }
-    default: {
-      for (let i = 0; i < n; i++) {
-        newArray.push(arr[i]);
-      }
-      return newArray;
-    }
+
+  for (let i = 0; i < n; i++) {
+    newArray[i] = arr[i]
   }
+  return newArray;
 };
 
-console.log(first(users, 2));
+// const first = function (arr, n) {
+//   const newArray = [];
+//   // Знаю, что лучше не делать больше, чем требуется т.к. за это мне не доплатят, 
+//   // но сделал для тренировки чтобы не было тонны undefined в случае, если с придет слишком большое n
+//   if (n > arr.length) {
+//     n = arr.length
+//   }
+  
+//   switch (n) {
+//     case undefined: {
+//       newArray.push(arr[0]);
+//       return newArray;
+//       break;
+//     }
+//     // Проверка оказалась лишней
+//     default: {
+//       for (let i = 0; i < n; i++) {
+//         newArray.push(arr[i]);
+//       }
+//       return newArray;
+//     }
+//   }
+// };
 
+console.log(first(users, 2));
