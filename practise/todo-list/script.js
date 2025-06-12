@@ -8,12 +8,7 @@ const todos = [
 ]
 
 const createTodo = function (todoList, todoName = "New todo") {
-  let maxId = 0
-  todoList.forEach(element => {
-    if (element.id > maxId) {
-      maxId = element.id
-    }
-  });
+  const maxId = todoList.reduce((max, e) => Math.max(max, e.id), 0)
   const newTodo = {
     id: maxId + 1,
     title: todoName,
@@ -43,6 +38,5 @@ const deleteTodo = function (todoList, todoId) {
 createTodo(todos, "Сделать тудулист")
 completeTodo(todos, 1)
 deleteTodo(todos, 2)
-
 
 console.log(todos)
