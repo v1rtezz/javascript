@@ -4,7 +4,8 @@ import { completeTodo } from "./components/complete-todo.js";
 import { deleteTodo } from "./components/delete-todo.js";
 import { createTodoItemHTML } from "./components/create-todo-item.js";
 
-const todos = [];
+const todos = JSON.parse(localStorage.getItem('todoListSave')) || [];
+
 export const newTodoInput = document.querySelector("[data-newTodoInput]");
 export const todoList = document.querySelector("[data-todoList]");
 const form = document.querySelector("[data-form]");

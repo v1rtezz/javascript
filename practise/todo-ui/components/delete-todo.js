@@ -4,5 +4,6 @@ export const deleteTodo = function (todoList, todoId) {
     console.error("Ошибка! Задачи с таким айди не существует!")
   } else {
     todoList.splice(index, 1)
+    localStorage.todoListSave = JSON.stringify(todoList)
   }
 }

@@ -4,5 +4,6 @@ export const completeTodo = function (todoList, todoId) {
     console.error("Ошибка! Задачи с таким айди не существует!")
   } else {
     todoList[index].isCompleted = !todoList[index].isCompleted
+    localStorage.todoListSave = JSON.stringify(todoList)
   }
 }

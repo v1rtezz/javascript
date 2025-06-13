@@ -7,4 +7,5 @@ export const createTodo = function (todoList) {
     isCompleted: false,
   }
   todoList.push(newTodo)
+  localStorage.todoListSave = JSON.stringify(todoList)
 }
