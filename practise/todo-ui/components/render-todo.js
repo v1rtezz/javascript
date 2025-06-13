@@ -1,8 +1,7 @@
 export const renderTodo = function (todoList, container) {
-  container.innerHTML = ""
   todoList.forEach((element) => {
     container.insertAdjacentHTML(
-      "beforeend",
+      'afterbegin',
       `
       <li class="todo ${
         element.isCompleted ? "todo--completed" : ""
