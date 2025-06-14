@@ -1,0 +1,60 @@
+@import url("https://fonts.googleapis.com/css2?family=Huninn&display=swap");
+
+body {
+  background-color: #333;
+  padding: 50px 15px;
+}
+
+.timer-wrapper {
+  background-color: #fff;
+  padding: 35px 10px;
+  border-radius: 16px;
+  font-family: "Huninn", sans-serif;
+  color: #2a2a2a;
+}
+
+.title {
+  font-size: 25px;
+  padding: 0;
+  margin: 0;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.timer {
+  display: flex;
+  gap: 20px;
+  color: rgb(210, 97, 210);
+  font-weight: 700;
+  justify-content: center;
+}
+.timer-item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-right: 20px;
+  gap: 5px;
+  width: 45px;
+}
+.timer-item div {
+  font-size: 20px;
+}
+.timer-item span {
+  font-size: 14px;
+}
+.timer-item::after {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 2px;
+  background-color: rgb(210, 97, 210);
+  top: 0;
+  right: 0;
+}
+.timer-item:last-child {
+  padding-right: 0;
+}
+.timer-item:last-child::after {
+  content: none;
+}
