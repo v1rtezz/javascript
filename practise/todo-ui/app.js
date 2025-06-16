@@ -1,8 +1,8 @@
-import { renderTodo } from "./components/render-todo.js";
-import { createTodo } from "./components/create-todo.js";
-import { completeTodo } from "./components/complete-todo.js";
-import { deleteTodo } from "./components/delete-todo.js";
-import { createTodoItemHTML } from "./components/create-todo-item.js";
+import { renderTodo } from "./modules/render-todo.js";
+import { createTodo } from "./modules/create-todo.js";
+import { completeTodo } from "./modules/complete-todo.js";
+import { deleteTodo } from "./modules/delete-todo.js";
+import { createTodoItemHTML } from "./modules/create-todo-item.js";
 
 const todos = JSON.parse(localStorage.getItem("todoListSave")) || [];
 
