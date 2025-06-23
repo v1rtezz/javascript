@@ -1,27 +1,27 @@
-.videos {
+.films {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
-.video {
+.film {
   max-width: 400px;
   background: rgb(181, 106, 181);
   padding: 10px;
   border-radius: 24px;
   color: #fff;
 }
-.video__img {
+.film__img {
   width: 100%;
   border-radius: 14px;
   margin-bottom: 10px;
 }
-.video__rating {
+.film__rating {
   font-size: 30px;
   margin-bottom: 10px;
 }
-.video__title {
+.film__title {
   font-size: 30px;
   margin-bottom: 10px;
 }
-.video__genre {
+.film__genre {
 }
