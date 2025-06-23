@@ -50,7 +50,7 @@ class RenderVideos {
       const data = await response.json()
       this.renderVideos(data.items)
     } catch (error) {
-      throw new Error("Ошибка загрузки!")
+      throw new Error("Ошибка.. У нас технические неполадки, пожалуйста, вернитесь позже")
     }
   }
 }
