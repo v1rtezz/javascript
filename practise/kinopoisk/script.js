@@ -4,10 +4,10 @@ class RenderVideos {
   #API_KEY = "2bc5f7de-a6c1-4314-844b-1ed661b25d47"
 
   constructor(film) {
-    this.videosWrapper = film
+    this.filmsWrapper = film
   }
 
-  createVideo(film) {
+  createFilm(film) {
     return `
    <div class="film">
         <img
@@ -26,20 +26,36 @@ class RenderVideos {
       `
   }
 
-  async renderVideos() {
-    this.videosWrapper.innerHTML = ""
+  async renderFilms() {
+    this.filmsWrapper.innerHTML = ""
     const array = await this.getFilms()
     array.forEach((film) => {
-      this.videosWrapper.insertAdjacentHTML("beforeend", this.createVideo(film))
+      this.filmsWrapper.insertAdjacentHTML("beforeend", this.createFilm(film))
     })
   }
 
-  async getFilms() {
+  alertError() {
+    const errorMessage = `
+   <p class="error-message">Опаньки! Что-то не так на стороне сервера. Вернитесь позже</p>
+  `
+    document.body.insertAdjacentHTML("afterbegin", errorMessage)
+throw new Error("Опаньки! Что-то не так на стороне сервера. Вернитесь позже");
+
+  }
+
+  showLoader() {
     const loaderHTML = `
     <img data-video="loader" style="width: 100px; margin: 0 auto; display: block;" src="https://cdnl.iconscout.com/lottie/premium/thumb/loading-5325468-4450387.gif" alt="Loading...">
   `
     document.body.insertAdjacentHTML("afterbegin", loaderHTML)
+  }
 
+  hideLoader() {
+    document.querySelector('[data-video="loader"]')?.remove()
+  }
+
+  async getFilms() {
+    this.showLoader()
     try {
       const response = await fetch(`${this.#API_URL}`, {
         headers: {
@@ -48,30 +64,17 @@ class RenderVideos {
         },
       })
       if (!response.ok) {
-        const errorMessage = `
-   <p class="error-message">Опаньки! Что-то не так на стороне сервера. Вернитесь позже</p>
-  `
-        document.body.insertAdjacentHTML("afterbegin", errorMessage)
-        throw new Error(
-          "Опаньки! Что-то не так на стороне сервера. Вернитесь позже"
-        )
+        this.alertError()
       }
-
       const data = await response.json()
       return data.items
     } catch (error) {
-      const errorMessage = `
-   <p class="error-message">Опаньки! Что-то не так на стороне сервера. Вернитесь позже</p>
-  `
-      document.body.insertAdjacentHTML("afterbegin", errorMessage)
-      throw new Error(
-        "Ошибка.. У нас технические неполадки, пожалуйста, вернитесь позже"
-      )
+      this.alertError()
     } finally {
-      document.querySelector('[data-video="loader"]')?.remove()
+      this.hideLoader()
     }
   }
 }
 
 const test = new RenderVideos(document.querySelector('[data-film="wrapper"]'))
-test.renderVideos()
+test.renderFilms()
