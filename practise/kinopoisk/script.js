@@ -26,13 +26,11 @@ class RenderVideos {
       `
   }
 
-  renderVideos(array) {
+  async renderVideos() {
     this.videosWrapper.innerHTML = ""
+    const array = await this.getFilms()
     array.forEach((film) => {
-      this.videosWrapper.insertAdjacentHTML(
-        "beforeend",
-        this.createVideo(film)
-      )
+      this.videosWrapper.insertAdjacentHTML("beforeend", this.createVideo(film))
     })
   }
 
@@ -50,22 +48,22 @@ class RenderVideos {
         },
       })
       if (!response.ok) {
-           const errorMessage = `
+        const errorMessage = `
    <p class="error-message">Опаньки! Что-то не так на стороне сервера. Вернитесь позже</p>
   `
-    document.body.insertAdjacentHTML("afterbegin", errorMessage)
+        document.body.insertAdjacentHTML("afterbegin", errorMessage)
         throw new Error(
           "Опаньки! Что-то не так на стороне сервера. Вернитесь позже"
         )
       }
 
       const data = await response.json()
-      this.renderVideos(data.items)
+      return data.items
     } catch (error) {
-                  const errorMessage = `
+      const errorMessage = `
    <p class="error-message">Опаньки! Что-то не так на стороне сервера. Вернитесь позже</p>
   `
-    document.body.insertAdjacentHTML("afterbegin", errorMessage)
+      document.body.insertAdjacentHTML("afterbegin", errorMessage)
       throw new Error(
         "Ошибка.. У нас технические неполадки, пожалуйста, вернитесь позже"
       )
@@ -76,4 +74,4 @@ class RenderVideos {
 }
 
 const test = new RenderVideos(document.querySelector('[data-film="wrapper"]'))
-test.getFilms()
+test.renderVideos()
